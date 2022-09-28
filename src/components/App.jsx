@@ -15,20 +15,24 @@ class App extends Component {
     modalOpen: false,
     selectedImage: '',
   };
+
   componentDidMount() {
     this.setState({ query: '' });
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.query !== this.state.query) {
       this.fetchIMG();
     }
   }
+
   changeQuery = query => {
     this.setState({ query, page: 1, pictures: [] });
   };
 
   fetchIMG = () => {
     const { page, query } = this.state;
+
     this.setState({ loading: true });
     API(query, page)
       .then(data => {
@@ -40,6 +44,7 @@ class App extends Component {
       })
       .finally(() => this.setState({ loading: false }));
   };
+
   toggleModal = () => {
     this.setState(prevState => ({
       modalOpen: !prevState.modalOpen,
@@ -57,10 +62,14 @@ class App extends Component {
     const isImages = Boolean(pictures.length);
     return (
       <div>
-        {modalOpen && <Modal onOpen={toggleModal} src={selectedImage} />}
         <Searchbar onSubmit={changeQuery} />
         {isImages && <ImageGallery items={pictures} />}
         {isImages && <Button onClick={fetchIMG} text={'Load more'} />}
+        {modalOpen && (
+          <Modal onOpen={toggleModal}>
+            <img src={selectedImage} alt="#" />
+          </Modal>
+        )}
         {loading && <Loader />}
       </div>
     );
