@@ -14,7 +14,6 @@ export default class Modal extends Component {
   }
 
   closeOnEsc = evt => {
-    console.log('asd2');
     if (evt.code === 'Escape') {
       this.props.toggleModal();
     }
