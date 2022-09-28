@@ -65,11 +65,7 @@ class App extends Component {
         <Searchbar onSubmit={changeQuery} />
         {isImages && <ImageGallery items={pictures} />}
         {isImages && <Button onClick={fetchIMG} text={'Load more'} />}
-        {modalOpen && (
-          <Modal onOpen={toggleModal}>
-            <img src={selectedImage} alt="#" />
-          </Modal>
-        )}
+        {modalOpen && <Modal onOpen={toggleModal} src={selectedImage} />}
         {loading && <Loader />}
       </div>
     );
