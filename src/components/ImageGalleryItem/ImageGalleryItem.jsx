@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import css from 'Styles/styles.module.css';
 
-export const ImageGalleryItem = ({ item, onClick }) => {
+export const ImageGalleryItem = ({ item, clickOnImage }) => {
   return (
     <li
       className={css.ImageGalleryItem}
-      onClick={() => onClick(item.largeImageURL)}
+      onClick={() => clickOnImage(item.largeImageURL)}
     >
       <img
         className={css.ImageGalleryItemImage}

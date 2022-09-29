@@ -3,7 +3,7 @@ import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import css from 'Styles/styles.module.css';
 import PropTypes from 'prop-types';
 
-const ImageGallery = ({ items, onClick }) => {
+const ImageGallery = ({ items, clickOnImage }) => {
   return (
     <ul className={css.ImageGallery}>
       {items.map(item => {
@@ -11,10 +11,7 @@ const ImageGallery = ({ items, onClick }) => {
           <ImageGalleryItem
             item={item}
             key={item.id}
-            // src={webformatURL}
-            // alt={tags}
-            // largeImageURL={largeImageURL}
-            onClick={onClick} ////Я перез просп передала метод до лішки, який приймає посилання на велику фотку й змінює в state на  значення
+            clickOnImage={clickOnImage}
           />
         );
       })}

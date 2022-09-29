@@ -15,14 +15,20 @@ export default class Modal extends Component {
 
   closeOnEsc = e => {
     if (e.code === 'Escape') {
-      this.props.onToggle();
+      this.props.onClose();
+    }
+  };
+  closeOnClick = e => {
+    e.preventDefault();
+    if (e.currentTarget === e.target) {
+      this.props.onClose();
     }
   };
 
   render() {
-    const { onToggle, largeImageURL } = this.props;
+    const { largeImageURL } = this.props;
     return createPortal(
-      <div className={css.Overlay} onClick={onToggle}>
+      <div className={css.Overlay} onClick={this.closeOnClick}>
         <div className={css.Modal}>
           <img src={largeImageURL} alt="#" />
         </div>

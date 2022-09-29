@@ -13,7 +13,7 @@ class App extends Component {
     query: '',
     loading: false,
     modalOpen: false,
-    selectedImage: null,
+    selectedImage: '',
   };
 
   componentDidMount() {
@@ -48,13 +48,12 @@ class App extends Component {
   toggleModal = () => {
     this.setState(prevState => ({
       modalOpen: !prevState.modalOpen,
-      selectedImage: null,
     }));
   };
 
   openSelectedImage = largeImageURL => {
-    this.toggleModal();
     this.setState({ selectedImage: largeImageURL });
+    this.toggleModal();
   };
 
   render() {
@@ -67,15 +66,14 @@ class App extends Component {
       <div>
         <Searchbar onSubmit={changeQuery} />
         {isImages && (
-          <ImageGallery items={pictures} onClick={openSelectedImage} />
+          <ImageGallery items={pictures} clickOnImage={openSelectedImage} />
         )}
 
         {isImages && <Button onClick={fetchIMG} text={'Load more'} />}
-
-        {modalOpen && (
-          <Modal onToggle={toggleModal} largeImageURL={selectedImage} />
-        )}
         {loading && <Loader />}
+        {modalOpen && (
+          <Modal onClose={toggleModal} largeImageURL={selectedImage} />
+        )}
       </div>
     );
   }
