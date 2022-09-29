@@ -34,15 +34,19 @@ class App extends Component {
     const { page, query } = this.state;
 
     this.setState({ loading: true });
-    API(query, page)
-      .then(data => {
-        this.setState(prevState => ({
-          pictures: [...prevState.pictures, ...data],
-          page: prevState.page + 1,
-        }));
-        console.log(this.state.pictures);
-      })
-      .finally(() => this.setState({ loading: false }));
+    try {
+      API(query, page)
+        .then(data => {
+          this.setState(prevState => ({
+            pictures: [...prevState.pictures, ...data],
+            page: prevState.page + 1,
+          }));
+          console.log(this.state.pictures);
+        })
+        .finally(() => this.setState({ loading: false }));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   toggleModal = () => {

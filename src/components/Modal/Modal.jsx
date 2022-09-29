@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import css from 'Styles/styles.module.css';
 
-const modalRoot = document.getElementById('#modal-root');
+const modalRoot = document.getElementById('modal-root');
 
 export default class Modal extends Component {
   componentDidMount() {
