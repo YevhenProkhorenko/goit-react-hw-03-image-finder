@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import css from 'Styles/styles.module.css';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { FcSearch } from 'react-icons/fc';
 
 export default class Searchbar extends Component {
