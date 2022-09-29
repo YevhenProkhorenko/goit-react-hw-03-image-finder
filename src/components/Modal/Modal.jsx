@@ -13,24 +13,18 @@ export default class Modal extends Component {
     window.removeEventListener('keydown', this.closeOnEsc);
   }
 
-  closeOnEsc = evt => {
-    if (evt.code === 'Escape') {
-      this.props.toggleModal();
-    }
-  };
-
-  closeOnClick = evt => {
-    if (evt.target === evt.currentTarget) {
-      this.props.toggleModal();
+  closeOnEsc = e => {
+    if (e.code === 'Escape') {
+      this.props.onToggle();
     }
   };
 
   render() {
-    const { closeOnClick } = this;
+    const { onToggle, largeImageURL } = this.props;
     return createPortal(
-      <div className={css.Overlay} onClick={closeOnClick}>
+      <div className={css.Overlay} onClick={onToggle}>
         <div className={css.Modal}>
-          <img src={this.props.largeImageURL} alt="#" />
+          <img src={largeImageURL} alt="#" />
         </div>
       </div>,
       modalRoot

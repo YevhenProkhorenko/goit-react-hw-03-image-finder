@@ -5,14 +5,16 @@ import PropTypes from 'prop-types';
 
 const ImageGallery = ({ items, onClick }) => {
   return (
-    <ul className={css.ImageGallery} onClick={onClick}>
-      {items.map(({ id, webformatURL, tags, largeImageURL }) => {
+    <ul className={css.ImageGallery}>
+      {items.map(item => {
         return (
           <ImageGalleryItem
-            key={id}
-            src={webformatURL}
-            tags={tags}
-            largeImageURL={largeImageURL}
+            item={item}
+            key={item.id}
+            // src={webformatURL}
+            // alt={tags}
+            // largeImageURL={largeImageURL}
+            onClick={onClick} ////Я перез просп передала метод до лішки, який приймає посилання на велику фотку й змінює в state на  значення
           />
         );
       })}

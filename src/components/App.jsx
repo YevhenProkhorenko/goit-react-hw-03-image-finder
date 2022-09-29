@@ -13,11 +13,11 @@ class App extends Component {
     query: '',
     loading: false,
     modalOpen: false,
-    selectedImage: '',
+    selectedImage: null,
   };
 
   componentDidMount() {
-    this.setState({ query: '' });
+    this.setState({ query: 'yellow flower' });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -48,24 +48,33 @@ class App extends Component {
   toggleModal = () => {
     this.setState(prevState => ({
       modalOpen: !prevState.modalOpen,
+      selectedImage: null,
     }));
   };
 
-  openSelectedImage = e => {
-    this.setState({ selectedImage: e.target.src });
+  openSelectedImage = largeImageURL => {
     this.toggleModal();
+    this.setState({ selectedImage: largeImageURL });
   };
 
   render() {
     const { pictures, loading, modalOpen, selectedImage } = this.state;
-    const { changeQuery, fetchIMG, toggleModal } = this;
+    const { changeQuery, fetchIMG, toggleModal, openSelectedImage } = this;
+
     const isImages = Boolean(pictures.length);
+
     return (
       <div>
         <Searchbar onSubmit={changeQuery} />
-        {isImages && <ImageGallery items={pictures} />}
+        {isImages && (
+          <ImageGallery items={pictures} onClick={openSelectedImage} />
+        )}
+
         {isImages && <Button onClick={fetchIMG} text={'Load more'} />}
-        {modalOpen && <Modal onOpen={toggleModal} src={selectedImage} />}
+
+        {modalOpen && (
+          <Modal onToggle={toggleModal} largeImageURL={selectedImage} />
+        )}
         {loading && <Loader />}
       </div>
     );
