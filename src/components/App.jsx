@@ -17,7 +17,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.setState({ query: 'yellow flower' });
+    this.setState({ query: '' });
   }
 
   componentDidUpdate(prevProps, prevState) {

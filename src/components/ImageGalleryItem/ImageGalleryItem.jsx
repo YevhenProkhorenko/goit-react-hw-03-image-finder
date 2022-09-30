@@ -17,7 +17,14 @@ export const ImageGalleryItem = ({ item, clickOnImage }) => {
   );
 };
 
+ImageGalleryItem.defaultProps = {
+  largeImageURL: '',
+  webformatURL: '',
+  tags: '',
+};
 ImageGalleryItem.propTypes = {
+  clickOnImage: PropTypes.func.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
   webformatURL: PropTypes.string.isRequired,
   tags: PropTypes.string.isRequired,
 };

@@ -23,6 +23,7 @@ ImageGallery.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({ id: PropTypes.number.isRequired })
   ),
+  clickOnImage: PropTypes.func.isRequired,
 };
 
 export default ImageGallery;
