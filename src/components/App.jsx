@@ -27,7 +27,9 @@ class App extends Component {
   }
 
   changeQuery = query => {
-    this.setState({ query, page: 1, pictures: [] });
+    if (this.query !== query) {
+      this.setState({ query, page: 1 });
+    }
   };
 
   fetchIMG = () => {
